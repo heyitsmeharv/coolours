@@ -82,7 +82,77 @@ const colours = {
     { colourName: 'LightSeaGreen', hex: '#20B2AA' },
     { colourName: 'DarkCyan', hex: '#008B8B' },
     { colourName: 'Teal', hex: '#008080' },
-  ]
+  ],
+  cyan: [
+    { colourName: 'Aqua', hex: '#00FFFF' },
+    { colourName: 'Cyan', hex: '#00FFFF' },
+    { colourName: 'LightCyan', hex: '#E0FFFF' },
+    { colourName: 'PaleTurquoise', hex: '#AFEEEE' },
+    { colourName: 'Aquamarine', hex: '#7FFFD4' },
+    { colourName: 'Turquoise', hex: '#40E0D0' },
+    { colourName: 'MediumTurquoise', hex: '#48D1CC' },
+    { colourName: 'DarkTurquoise', hex: '#00CED1' },
+  ],
+  blue: [
+    { colourName: 'CadetBlue', hex: '#5F9EA0' },
+    { colourName: 'SteelBlue', hex: '#4682B4' },
+    { colourName: 'LightSteelBlue', hex: '#B0C4DE' },
+    { colourName: 'LightBlue', hex: '#ADD8E6' },
+    { colourName: 'PowderBlue', hex: '#B0E0E6' },
+    { colourName: 'LightSkyBlue', hex: '#87CEFA' },
+    { colourName: 'SkyBlue', hex: '#87CEEB' },
+    { colourName: 'CornflowerBlue', hex: '#6495ED' },
+    { colourName: 'DeepSkyBlue', hex: '#00BFFF' },
+    { colourName: 'DodgerBlue', hex: '#1E90FF' },
+    { colourName: 'RoyalBlue', hex: '#4169E1' },
+    { colourName: 'Blue', hex: '#0000FF' },
+    { colourName: 'MediumBlue', hex: '#0000CD' },
+    { colourName: 'DarkBlue', hex: '#00008B' },
+    { colourName: 'Navy', hex: '#000080' },
+    { colourName: 'MidnightBlue', hex: '#191970' },
+  ],
+  brown: [
+    { colourName: 'Cornsilk', hex: '#FFF8DC' },
+    { colourName: 'BlanchedAlmond', hex: '#FFEBCD' },
+    { colourName: 'Bisque', hex: '#FFE4C4' },
+    { colourName: 'NavajoWhite', hex: '#FFDEAD' },
+    { colourName: 'Wheat', hex: '#F5DEB3' },
+    { colourName: 'BurlyWood', hex: '#DEB887' },
+    { colourName: 'SkyBlue', hex: '' },
+    { colourName: 'CornflowerBlue', hex: '' },
+    { colourName: 'DeepSkyBlue', hex: '' },
+    { colourName: 'DodgerBlue', hex: '' },
+    { colourName: 'RoyalBlue', hex: '' },
+    { colourName: 'Blue', hex: '' },
+    { colourName: 'MediumBlue', hex: '' },
+    { colourName: 'DarkBlue', hex: '' },
+    { colourName: 'Navy', hex:  },
+    { colourName: 'MidnightBlue', hex:  },
+    { colourName: 'MediumBlue', hex:  },
+    { colourName: 'DarkBlue', hex:  },
+    { colourName: 'Navy', hex:  },
+    { colourName: 'MidnightBlue', hex:  },
+  ],
+
+  Cornsilk 	'#FFF8DC'
+BlanchedAlmond 	'#FFEBCD'
+Bisque 	'#FFE4C4'
+NavajoWhite 	'#FFDEAD'
+Wheat 	'#F5DEB3'
+BurlyWood 	'#DEB887'
+Tan 	'#D2B48C'
+RosyBrown 	'#BC8F8F'
+SandyBrown 	'#F4A460'
+GoldenRod 	'#DAA520'
+DarkGoldenRod 	'#B8860B'
+Peru 	'#CD853F'
+Chocolate 	'#D2691E'
+Olive 	'#808000'
+SaddleBrown 	'#8B4513'
+Sienna 	'#A0522D'
+Brown 	'#A52A2A'
+Maroon 	'#800000'
+
 }
 
 export default colours
