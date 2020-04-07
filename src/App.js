@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from 'styled-components';
 
 import { Button, ButtonWrapper } from './components/Button/Button';
-import { Tile, TileWrapper } from './components/Tile/Tile';
+import { Tile, TileWrapper } from './components/Tile/Tile'
+
+import { SaveAlt } from '@styled-icons/material-rounded/SaveAlt'
 
 import colour from './resources/styles/colours';
 
@@ -35,7 +37,15 @@ const HeaderWrapper = styled.div`
   font-size: 25px;
   color: white;
   font-weight: bold;
-`
+`;
+
+const StyledIcon = styled(SaveAlt)`
+  width: 50px;
+  color: white;
+  :hover {
+    cursor: pointer;
+  }
+`;
 
 const App = () => {
   const [colours] = useState(colour);
@@ -76,6 +86,9 @@ const App = () => {
         </TileWrapper>
         <ButtonWrapper onClick={() => generateColours()}>
           <Button text="Generate Colours" />
+        </ButtonWrapper>
+        <ButtonWrapper onClick={() => generateColours()}>
+          <StyledIcon />
         </ButtonWrapper>
       </AppContainer>
     </Background>

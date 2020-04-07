@@ -15,8 +15,20 @@ export const TileWrapper = styled.div`
   justify-content: center;
 `
 
+export const Value = styled.span`
+  font-size: 5vh;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`
+
 export const Tile = props => {
+  // const [isHoverActive, setHoverActive] = useState(false);
+
   return (
-    <StyledTile colour={props.colour} />
+    <StyledTile colour={props.colour}>
+      <Value>{props.colour}</Value>
+    </StyledTile>
   )
 }
