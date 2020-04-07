@@ -11,8 +11,8 @@ import colour from './resources/styles/colours';
 const Background = styled.div`
   background: linear-gradient(-45deg, ${props => props.colourOne}, ${props => props.colourTwo});
   background-size: 400% 400%;
-  -webkit-animation: backgroundAnimation 10s ease infinite;
-  animation: backgroundAnimation 10s ease infinite;
+  -webkit-animation: backgroundAnimation 5s ease infinite;
+  animation: backgroundAnimation 5s ease infinite;
 
   @keyframes backgroundAnimation {
     0% {
