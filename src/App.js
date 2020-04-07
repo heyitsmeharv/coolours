@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { Button, ButtonWrapper } from './components/Button/Button';
 import { Tile, TileWrapper } from './components/Tile/Tile';
 
-// import colour from './resources/styles/colours';
+import colour from './resources/styles/colours';
 
 const Background = styled.div`
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, ${props => props.colourOne}, ${props => props.colourTwo});
   background-size: 400% 400%;
-  -webkit-animation: backgroundAnimation 15s ease infinite;
-  animation: backgroundAnimation 15s ease infinite;
+  -webkit-animation: backgroundAnimation 10s ease infinite;
+  animation: backgroundAnimation 10s ease infinite;
 
   @keyframes backgroundAnimation {
     0% {
@@ -38,17 +38,43 @@ const HeaderWrapper = styled.div`
 `
 
 const App = () => {
+  const [colours] = useState(colour);
+  const [randomColour, setRandomColour] = useState();
+
+  // random property from object
+  const randomProperty = obj => {
+    let keys = Object.keys(obj);
+    return obj[keys[Math.floor(Math.random() * keys.length)]];
+  };
+
+  const generateColours = () => {
+    // if no presets, random categories for each.
+    let colourCategoryOne = colours[Math.floor(Math.random() * colours.length)];
+    let colourCategoryTwo = colours[Math.floor(Math.random() * colours.length)];
+
+    // refactor to not call function twice
+    let categoryOne = randomProperty(colourCategoryOne);
+    let categoryTwo = randomProperty(colourCategoryTwo);
+    let colourOne = randomProperty(categoryOne);
+    let colourTwo = randomProperty(categoryTwo);
+
+    setRandomColour([colourOne, colourTwo]);
+    console.log(randomColour);
+  }
+
   return (
-    <Background>
+    <Background
+      colourOne={randomColour ? randomColour[0].hex : '#ee7752, #e73c7e'}
+      colourTwo={randomColour ? randomColour[1].hex : '#23a6d5, #23d5ab'}>
       <AppContainer>
         <HeaderWrapper>
           <h2>Colour Generator</h2>
         </HeaderWrapper>
         <TileWrapper>
-          <Tile />
-          <Tile />
+          <Tile colour={randomColour ? randomColour[0].hex : ''} />
+          <Tile colour={randomColour ? randomColour[1].hex : ''} />
         </TileWrapper>
-        <ButtonWrapper>
+        <ButtonWrapper onClick={() => generateColours()}>
           <Button text="Generate Colours" />
         </ButtonWrapper>
       </AppContainer>

@@ -1,7 +1,8 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const StyledButton = styled.button`
+  font-size: 2em;
   padding: 5px;
   color: white;
   background: none;

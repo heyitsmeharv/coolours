@@ -1,11 +1,12 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const StyledTile = styled.div`
-  width: 200px;
-  height: 200px;
+  width: 50vh;
+  height: 50vh;
   margin: 25px;
   border: white dashed 5px;
+  background: ${props => props.colour};
 `
 
 export const TileWrapper = styled.div`
@@ -14,8 +15,8 @@ export const TileWrapper = styled.div`
   justify-content: center;
 `
 
-export const Tile = () => {
+export const Tile = props => {
   return (
-    <StyledTile/>
+    <StyledTile colour={props.colour} />
   )
 }

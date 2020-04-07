@@ -1,13 +1,13 @@
-const colours = {
-  pink: [
+const colours = [
+  { pink: [
     { colourName: 'Pink', hex: '#FFC0CB' },
     { colourName: 'LightPink', hex: '#FFB6C1' },
     { colourName: 'HotPink', hex: '#FF69B4' },
     { colourName: 'DeepPink', hex: '#FF1493' },
     { colourName: 'PaleVioletRed', hex: '#DB7093' },
     { colourName: 'MediumVioletRed', hex: '#C71585' },
-  ],
-  purple: [
+  ]},
+  { purple: [
     { colourName: 'Lavender', hex: '#E6E6FA' },
     { colourName: 'Thistle', hex: '#D8BFD8' },
     { colourName: 'Plum', hex: '#DDA0DD' },
@@ -27,8 +27,8 @@ const colours = {
     { colourName: 'DarkSlateBlue', hex: '#483D8B' },
     { colourName: 'RebeccaPurple', hex: '#663399' },
     { colourName: 'Indigo', hex: '#4B0082' },
-  ],
-  red: [
+  ]},
+  { red: [
     { colourName: 'LightSalmon', hex: '#FFA07A' },
     { colourName: 'Salmon', hex: '#FA8072' },
     { colourName: 'DarkSalmon', hex: '#E9967A' },
@@ -38,15 +38,15 @@ const colours = {
     { colourName: 'Red', hex: '#FF0000' },
     { colourName: 'FireBrick', hex: '#B22222' },
     { colourName: 'DarkRed', hex: '#8B0000' },
-  ],
-  orange: [
+  ]},
+  { orange: [
     { colourName: 'Orange', hex: '#FFA500' },
     { colourName: 'DarkOrange', hex: '#FF8C00' },
     { colourName: 'Coral', hex: '#FF7F50' },
     { colourName: 'Tomato', hex: '#FF6347' },
     { colourName: 'OrangeRed', hex: '#FF4500' },
-  ],
-  yellow: [
+  ]},
+  { yellow: [
     { colourName: 'Gold', hex: '#FFD700' },
     { colourName: 'Yellow', hex: '#FFFF00' },
     { colourName: 'LightYellow', hex: '#FFFFE0' },
@@ -58,8 +58,8 @@ const colours = {
     { colourName: 'PaleGoldenRod', hex: '#EEE8AA' },
     { colourName: 'Khaki', hex: '#F0E68C' },
     { colourName: 'DarkKhaki', hex: '#BDB76B' },
-  ],
-  green: [
+  ]},
+  { green: [
     { colourName: 'GreenYellow', hex: '#ADFF2F' },
     { colourName: 'Chartreuse', hex: '#7FFF00' },
     { colourName: 'LawnGreen', hex: '#7CFC00' },
@@ -82,8 +82,8 @@ const colours = {
     { colourName: 'LightSeaGreen', hex: '#20B2AA' },
     { colourName: 'DarkCyan', hex: '#008B8B' },
     { colourName: 'Teal', hex: '#008080' },
-  ],
-  cyan: [
+  ]},
+  { cyan: [
     { colourName: 'Aqua', hex: '#00FFFF' },
     { colourName: 'Cyan', hex: '#00FFFF' },
     { colourName: 'LightCyan', hex: '#E0FFFF' },
@@ -92,8 +92,8 @@ const colours = {
     { colourName: 'Turquoise', hex: '#40E0D0' },
     { colourName: 'MediumTurquoise', hex: '#48D1CC' },
     { colourName: 'DarkTurquoise', hex: '#00CED1' },
-  ],
-  blue: [
+  ]},
+  { blue: [
     { colourName: 'CadetBlue', hex: '#5F9EA0' },
     { colourName: 'SteelBlue', hex: '#4682B4' },
     { colourName: 'LightSteelBlue', hex: '#B0C4DE' },
@@ -110,8 +110,8 @@ const colours = {
     { colourName: 'DarkBlue', hex: '#00008B' },
     { colourName: 'Navy', hex: '#000080' },
     { colourName: 'MidnightBlue', hex: '#191970' },
-  ],
-  brown: [
+  ]},
+  { brown: [
     { colourName: 'Cornsilk', hex: '#FFF8DC' },
     { colourName: 'BlanchedAlmond', hex: '#FFEBCD' },
     { colourName: 'Bisque', hex: '#FFE4C4' },
@@ -130,8 +130,8 @@ const colours = {
     { colourName: 'Sienna', hex: '#A0522D' },
     { colourName: 'Brown', hex: '#A52A2A' },
     { colourName: 'Maroon', hex: '#800000' },
-  ],
-  white: [
+  ]},
+  { white: [
     { colourName: 'White', hex: '#FFFFFF' },
     { colourName: 'Snow', hex: '#FFFAFA' },
     { colourName: 'HoneyDew', hex: '#F0FFF0' },
@@ -148,8 +148,8 @@ const colours = {
     { colourName: 'Linen', hex: '#FAEBD7' },
     { colourName: 'LavenderBlush', hex: '#FAF0E6' },
     { colourName: 'MistyRose', hex: '#FFF0F5' },
-  ],
-  gray: [
+  ]},
+  { gray: [
     { colourName: 'Gainsboro', hex: '#DCDCDC' },
     { colourName: 'LightGray', hex: '#D3D3D3' },
     { colourName: 'Silver', hex: '#C0C0C0' },
@@ -160,8 +160,8 @@ const colours = {
     { colourName: 'SlateGray', hex: '#708090' },
     { colourName: 'DarkSlateGray', hex: '#2F4F4F' },
     { colourName: 'Black', hex: '#000000' },
-  ],
-  light: [
+  ]},
+  { light: [
     { colourName: 'Gainsboro', hex: '#DCDCDC' },
     { colourName: 'LightGray', hex: '#D3D3D3' },
     { colourName: 'LightSlateGray', hex: '#778899' },
@@ -245,8 +245,8 @@ const colours = {
     { colourName: 'Pink', hex: '#FFC0CB' },
     { colourName: 'LightPink', hex: '#FFB6C1' },
     { colourName: 'HotPink', hex: '#FF69B4' },
-  ],
-  dark: [
+  ]},
+  { dark: [
     { colourName: 'Silver', hex: '#C0C0C0' },
     { colourName: 'DarkGray', hex: '#A9A9A9' },
     { colourName: 'DimGray', hex: '#696969' },
@@ -304,7 +304,7 @@ const colours = {
     { colourName: 'DeepPink', hex: '#FF1493' },
     { colourName: 'PaleVioletRed', hex: '#DB7093' },
     { colourName: 'MediumVioletRed', hex: '#C71585' },
-  ]
-}
+  ]}
+]
 
 export default colours
