@@ -1,13 +1,21 @@
 import React from 'react';
+import styled, { css } from 'styled-components';
 
-import './style.scss';
+const StyledTile = styled.div`
+  width: 200px;
+  height: 200px;
+  margin: 25px;
+  border: white dashed 5px;
+`
 
-const Tile = () => {
+export const TileWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const Tile = () => {
   return (
-    <div className="Tile">
-      
-    </div>
+    <StyledTile/>
   )
 }
-
-export default Tile 
