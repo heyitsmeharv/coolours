@@ -43,6 +43,7 @@ const ContentContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   flex: 1;
+  margin-right: 22vh;
 `;
 
 const SideBarContainer = styled.div`
