@@ -13,10 +13,16 @@ const StyledButton = styled.button`
   }
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapperCenter = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+
+export const ButtonWrapperRight = styled.div`
+  display: flex;
+  align-items: right;
+  justify-content: right;
 `
 
 export const Button = props => {

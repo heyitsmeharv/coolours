@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 
-import { Button, ButtonWrapper } from './components/Button/Button';
+// components
+import { Button, ButtonWrapperCenter, ButtonWrapperRight } from './components/Button/Button';
+import Drawer from './components/Drawer/Drawer';
 import { Tile, TileWrapper } from './components/Tile/Tile';
-import SavedTile from './components/SavedTile/SavedTile';
 
-import { SaveAlt } from '@styled-icons/material-rounded/SaveAlt';
+// icons
+import { StyledSaveIcon, StyledLeftIcon, StyledRightIcon } from './components/Icons/Icons';
 
+// resources
 import colourList from './resources/styles/colours';
 
 const Background = styled.div`
@@ -31,6 +34,22 @@ const Background = styled.div`
 const AppContainer = styled.div`
   width: 100%;
   height: 100vh;
+  display: flex;
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+`;
+
+const SideBarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 `;
 
 const HeaderWrapper = styled.div`
@@ -38,18 +57,6 @@ const HeaderWrapper = styled.div`
   font-size: 25px;
   color: white;
   font-weight: bold;
-`;
-
-const StyledIcon = styled(SaveAlt)`
-  width: 50px;
-  color: white;
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const SavedList = styled.ul`
-  display: flex;
 `;
 
 const ErrorText = styled.p`
@@ -65,6 +72,9 @@ const App = () => {
   const [randomColour, setRandomColour] = useState();
   const [savedColours, setSavedColours] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const toggleDrawer = () => setDrawerOpen(!isDrawerOpen);
+
 
   // random property from object
   const randomProperty = obj => {
@@ -106,35 +116,29 @@ const App = () => {
         <HeaderWrapper>
           <h2>Colour Generator</h2>
         </HeaderWrapper>
-        <TileWrapper>
-          <Tile colour={randomColour ? randomColour[0].hex : ''} />
-          <Tile colour={randomColour ? randomColour[1].hex : ''} />
-        </TileWrapper>
-        <ButtonWrapper onClick={() => generateColours()}>
-          <Button text="Generate Colours" />
-        </ButtonWrapper>
-        <ButtonWrapper onClick={() => saveColour(randomColour ? randomColour : '')}>
-          <StyledIcon />
-        </ButtonWrapper>
-        {isEmpty === true &&
-          <ErrorText>You can't save an empty set</ErrorText>
-        }
-        <SavedList>
-          {savedColours.map((tile, index) => (
-            <>
-              <SavedTile
-                key={index}
-                index={index}
-                colour={tile[0].hex}
-              />
-              <SavedTile
-                key={index}
-                index={index}
-                colour={tile[1].hex}
-              />
-            </>
-          ))}
-        </SavedList>
+        <ContentContainer>
+          <TileWrapper>
+            <Tile colour={randomColour ? randomColour[0].hex : ''} />
+            <Tile colour={randomColour ? randomColour[1].hex : ''} />
+          </TileWrapper>
+          <ButtonWrapperCenter onClick={() => generateColours()}>
+            <Button text="Generate Colours" />
+          </ButtonWrapperCenter>
+          <ButtonWrapperCenter onClick={() => saveColour(randomColour ? randomColour : '')}>
+            <StyledSaveIcon />
+          </ButtonWrapperCenter>
+          {isEmpty &&
+            <ErrorText>You can't save an empty set</ErrorText>
+          }
+        </ContentContainer>
+        <ButtonWrapperRight onClick={toggleDrawer}>
+          {!isDrawerOpen ?
+            <StyledLeftIcon /> : <StyledRightIcon />
+          }
+        </ButtonWrapperRight>
+        <SideBarContainer>
+          <Drawer contents={savedColours} isDrawerOpen={isDrawerOpen} />
+        </SideBarContainer>
       </AppContainer>
     </Background>
   );
