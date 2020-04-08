@@ -108,6 +108,11 @@ const App = () => {
     }
   };
 
+  const clearFavorites = () => {
+    const colours = [];
+    setSavedColours(colours);
+  };
+
   return (
     <Background
       colourOne={randomColour ? randomColour[0].hex : '#ee7752, #e73c7e'}
@@ -137,7 +142,7 @@ const App = () => {
           }
         </ButtonWrapperRight>
         <SideBarContainer>
-          <Drawer contents={savedColours} isDrawerOpen={isDrawerOpen} />
+          <Drawer clearFavorites={clearFavorites} contents={savedColours} isDrawerOpen={isDrawerOpen} />
         </SideBarContainer>
       </AppContainer>
     </Background>

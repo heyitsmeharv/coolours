@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import { Button, ButtonWrapperCenter } from '../../components/Button/Button';
 import { SavedTile } from '../../components/Tile/Tile';
 
 const DrawContainer = styled.div`
@@ -25,16 +26,21 @@ const DrawContents = styled.div`
 const SavedList = styled.ul`
   display: flex;
   flex-direction: column;
+  padding-top: 10px;
 `;
 
 const ListItem = styled.li`
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `
 
-const Drawer = ({ contents, isDrawerOpen }) => (
+const Drawer = ({ clearFavorites, contents, isDrawerOpen }) => (
   <DrawContainer isOpen={isDrawerOpen}>
     <DrawContents>
+      <ButtonWrapperCenter onClick={clearFavorites}>
+        <Button small border text="Clear Favorites" />
+      </ButtonWrapperCenter>
       <SavedList>
         {contents.map((tile, index) => (
           <ListItem>

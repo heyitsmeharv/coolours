@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledButton = styled.button`
   font-size: 2em;
@@ -8,6 +8,12 @@ const StyledButton = styled.button`
   background: none;
   outline: none;
   border: none;
+  ${props => props.small && css`
+    font-size: 1em;
+  `}
+  ${props => props.border && css`
+    border: 2px solid white;
+  `}
   :hover {
     cursor: pointer;
   }
@@ -26,7 +32,5 @@ export const ButtonWrapperRight = styled.div`
 `
 
 export const Button = props => {
-  return (
-    <StyledButton>{props.text}</StyledButton>
-  )
+  return <StyledButton small={props.small} border={props.border}>{props.text}</StyledButton>
 }
