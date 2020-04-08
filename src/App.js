@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styled from 'styled-components';
 
 import { Button, ButtonWrapper } from './components/Button/Button';
-import { Tile, TileWrapper } from './components/Tile/Tile'
+import { Tile, TileWrapper } from './components/Tile/Tile';
+import SavedTile from './components/SavedTile/SavedTile';
 
-import { SaveAlt } from '@styled-icons/material-rounded/SaveAlt'
+import { SaveAlt } from '@styled-icons/material-rounded/SaveAlt';
 
-import colour from './resources/styles/colours';
+import colourList from './resources/styles/colours';
 
 const Background = styled.div`
   background: linear-gradient(-45deg, ${props => props.colourOne}, ${props => props.colourTwo});
@@ -47,9 +48,23 @@ const StyledIcon = styled(SaveAlt)`
   }
 `;
 
+const SavedList = styled.ul`
+  display: flex;
+`;
+
+const ErrorText = styled.p`
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`;
+
 const App = () => {
-  const [colours] = useState(colour);
+  const [colours] = useState(colourList);
   const [randomColour, setRandomColour] = useState();
+  const [savedColours, setSavedColours] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   // random property from object
   const randomProperty = obj => {
@@ -69,8 +84,19 @@ const App = () => {
     let colourTwo = randomProperty(categoryTwo);
 
     setRandomColour([colourOne, colourTwo]);
-    console.log(randomColour);
+    setIsEmpty(false);
   }
+
+  const saveColour = colour => {
+    // don't want to save empty colour sets
+    if (colour !== '') {
+      const newColours = [...savedColours, colour];
+      setSavedColours(newColours);
+    } else {
+      // set an error message
+      setIsEmpty(true);
+    }
+  };
 
   return (
     <Background
@@ -87,9 +113,28 @@ const App = () => {
         <ButtonWrapper onClick={() => generateColours()}>
           <Button text="Generate Colours" />
         </ButtonWrapper>
-        <ButtonWrapper onClick={() => generateColours()}>
+        <ButtonWrapper onClick={() => saveColour(randomColour ? randomColour : '')}>
           <StyledIcon />
         </ButtonWrapper>
+        {isEmpty === true &&
+          <ErrorText>You can't save an empty set</ErrorText>
+        }
+        <SavedList>
+          {savedColours.map((tile, index) => (
+            <>
+              <SavedTile
+                key={index}
+                index={index}
+                colour={tile[0].hex}
+              />
+              <SavedTile
+                key={index}
+                index={index}
+                colour={tile[1].hex}
+              />
+            </>
+          ))}
+        </SavedList>
       </AppContainer>
     </Background>
   );
