@@ -73,9 +73,9 @@ const App = () => {
   const [randomColour, setRandomColour] = useState();
   const [savedColours, setSavedColours] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [isDuplicate, setIsDuplicate] = useState(false);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = () => setDrawerOpen(!isDrawerOpen);
-
 
   // random property from object
   const randomProperty = obj => {
@@ -96,13 +96,27 @@ const App = () => {
 
     setRandomColour([colourOne, colourTwo]);
     setIsEmpty(false);
+    setIsDuplicate(false);
   }
 
   const saveColour = colour => {
+    const colourOne = colour[0].colourName;
+    const colourTwo = colour[1].colourName;
+
     // don't want to save empty colour sets
     if (colour !== '') {
-      const newColours = [...savedColours, colour];
-      setSavedColours(newColours);
+      // also don't want to be able to add duplicates
+      let duplicated = savedColours.filter((t) => {
+        return (t[0].colourName === colourOne && t[1].colourName === colourTwo);
+      }).length > 0;
+
+      if (!duplicated) {
+        const newColours = [...savedColours, colour];
+        setSavedColours(newColours);
+        setIsDuplicate(false);
+      } else {
+        setIsDuplicate(true);
+      }
     } else {
       // set an error message
       setIsEmpty(true);
@@ -110,7 +124,7 @@ const App = () => {
   };
 
   const showFavorite = colour => {
-    setRandomColour([colour[0], colour[1]]);  
+    setRandomColour([colour[0], colour[1]]);
   }
 
   const clearFavorites = () => {
@@ -139,6 +153,9 @@ const App = () => {
           </ButtonWrapperCenter>
           {isEmpty &&
             <ErrorText>You can't save an empty set</ErrorText>
+          }
+          {isDuplicate &&
+            <ErrorText>You already have that set saved</ErrorText>
           }
         </ContentContainer>
         <ButtonWrapperRight onClick={toggleDrawer}>
