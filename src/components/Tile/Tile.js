@@ -29,6 +29,9 @@ const SavedItem = styled.div`
   margin: 10px;
   border: white dashed 2px;
   background: ${props => props.colour};
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const SavedTile = props => {

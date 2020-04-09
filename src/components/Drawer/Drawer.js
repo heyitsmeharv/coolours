@@ -38,7 +38,7 @@ const ListItem = styled.li`
   justify-content: center;
 `
 
-const Drawer = ({ clearFavorites, contents, isDrawerOpen }) => (
+const Drawer = ({ showFavorite, clearFavorites, contents, isDrawerOpen }) => (
   <DrawContainer shouldStyle={isDrawerOpen} isOpen={isDrawerOpen}>
     {isDrawerOpen &&
       <DrawContents>
@@ -47,7 +47,7 @@ const Drawer = ({ clearFavorites, contents, isDrawerOpen }) => (
         </ButtonWrapperCenter>
         <SavedList>
           {contents.map((tile, index) => (
-            <ListItem>
+            <ListItem onClick={() => showFavorite(tile)}>
               <SavedTile
                 key={index}
                 index={index}
