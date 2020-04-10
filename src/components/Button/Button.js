@@ -27,8 +27,6 @@ export const ButtonWrapperCenter = styled.div`
 
 export const ButtonWrapperRight = styled.div`
   display: flex;
-  align-items: right;
-  justify-content: right;
 `
 
 export const Button = props => {

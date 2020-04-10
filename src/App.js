@@ -100,11 +100,10 @@ const App = () => {
   }
 
   const saveColour = colour => {
-    const colourOne = colour[0].colourName;
-    const colourTwo = colour[1].colourName;
-
     // don't want to save empty colour sets
     if (colour !== '') {
+      const colourOne = colour[0].colourName;
+      const colourTwo = colour[1].colourName;
       // also don't want to be able to add duplicates
       let duplicated = savedColours.filter((t) => {
         return (t[0].colourName === colourOne && t[1].colourName === colourTwo);
