@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components';
 import { Button, ButtonWrapperCenter } from '../../components/Button/Button';
 import { SavedTile } from '../../components/Tile/Tile';
 
+import { DeleteBack } from '@styled-icons/remix-fill/DeleteBack';
+
 const DrawContainer = styled.div`
   ${props => props.shouldStyle && css`
     height: 100%;
@@ -38,7 +40,16 @@ const ListItem = styled.li`
   justify-content: center;
 `
 
-const Drawer = ({ showFavorite, clearFavorites, contents, isDrawerOpen }) => (
+const StyledDeleteIcon = styled(DeleteBack)`
+  color: white;
+  width: 30px;
+  padding-left: 2px;
+  :hover {
+    color: red;
+  }
+`
+
+const Drawer = ({ showFavorite, clearFavorites, deleteFavorite, contents, isDrawerOpen }) => (
   <DrawContainer shouldStyle={isDrawerOpen} isOpen={isDrawerOpen}>
     {isDrawerOpen &&
       <DrawContents>
@@ -58,6 +69,7 @@ const Drawer = ({ showFavorite, clearFavorites, contents, isDrawerOpen }) => (
                 index={index}
                 colour={tile[1].hex}
               />
+              <StyledDeleteIcon onClick={() => deleteFavorite(index)} />
             </ListItem>
           ))}
         </SavedList>

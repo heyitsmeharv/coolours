@@ -27,6 +27,15 @@ export const ButtonWrapperCenter = styled.div`
 
 export const ButtonWrapperRight = styled.div`
   display: flex;
+
+  @keyframes blinker {  
+    50% { opacity: 0; }
+  }
+
+  ${props => props.playAnimation && css`
+    animation: blinker 1s linear;
+  `}
+
 `
 
 export const Button = props => {

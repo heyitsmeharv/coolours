@@ -72,6 +72,7 @@ const App = () => {
   const [colours] = useState(colourList);
   const [randomColour, setRandomColour] = useState();
   const [savedColours, setSavedColours] = useState([]);
+  const [playAnimation, setPlayAnimation] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -97,6 +98,7 @@ const App = () => {
     setRandomColour([colourOne, colourTwo]);
     setIsEmpty(false);
     setIsDuplicate(false);
+    setPlayAnimation(false);
   }
 
   const saveColour = colour => {
@@ -113,6 +115,7 @@ const App = () => {
         const newColours = [...savedColours, colour];
         setSavedColours(newColours);
         setIsDuplicate(false);
+        setPlayAnimation(true);
       } else {
         setIsDuplicate(true);
       }
@@ -129,6 +132,12 @@ const App = () => {
   const clearFavorites = () => {
     const colours = [];
     setSavedColours(colours);
+  };
+
+  const deleteFavorite = index => {
+    const newColours = [...savedColours];
+    newColours.splice(index, 1);
+    setSavedColours(newColours);
   };
 
   return (
@@ -157,13 +166,18 @@ const App = () => {
             <ErrorText>You already have that set saved</ErrorText>
           }
         </ContentContainer>
-        <ButtonWrapperRight onClick={toggleDrawer}>
+        <ButtonWrapperRight playAnimation={playAnimation} onClick={toggleDrawer}>
           {!isDrawerOpen ?
             <StyledLeftIcon /> : <StyledRightIcon />
           }
         </ButtonWrapperRight>
         <SideBarContainer>
-          <Drawer showFavorite={showFavorite} clearFavorites={clearFavorites} contents={savedColours} isDrawerOpen={isDrawerOpen} />
+          <Drawer 
+            showFavorite={showFavorite} 
+            clearFavorites={clearFavorites}
+            deleteFavorite={deleteFavorite} 
+            contents={savedColours} 
+            isDrawerOpen={isDrawerOpen} />
         </SideBarContainer>
       </AppContainer>
     </Background>
