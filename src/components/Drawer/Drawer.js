@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
 import { Button, ButtonWrapperCenter } from '../../components/Button/Button';
 import { SavedTile } from '../../components/Tile/Tile';
@@ -40,20 +41,21 @@ const ListItem = styled.li`
   justify-content: center;
 `
 
+const StyledIconContainer = styled(motion.div)`
+  display: flex;
+`;
+
 const StyledDeleteIcon = styled(DeleteBack)`
   color: white;
   width: 30px;
   padding-left: 2px;
-  :hover {
-    color: red;
-  }
 `
 
 const Drawer = ({ showFavorite, clearFavorites, deleteFavorite, contents, isDrawerOpen }) => (
   <DrawContainer shouldStyle={isDrawerOpen} isOpen={isDrawerOpen}>
     {isDrawerOpen &&
       <DrawContents>
-        <ButtonWrapperCenter onClick={clearFavorites}>
+        <ButtonWrapperCenter whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={clearFavorites}>
           <Button small border text="Clear Favorites" />
         </ButtonWrapperCenter>
         <SavedList>
@@ -69,7 +71,9 @@ const Drawer = ({ showFavorite, clearFavorites, deleteFavorite, contents, isDraw
                 index={index}
                 colour={tile[1].hex}
               />
+              <StyledIconContainer whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <StyledDeleteIcon onClick={() => deleteFavorite(index)} />
+              </StyledIconContainer>
             </ListItem>
           ))}
         </SavedList>

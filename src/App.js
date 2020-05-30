@@ -154,9 +154,9 @@ const App = () => {
             <Tile colour={randomColour ? randomColour[1].hex : ''} />
           </TileWrapper>
           <ButtonWrapperCenter onClick={() => generateColours()}>
-            <Button text="Generate Colours" />
+            <Button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} text="Generate Colours" />
           </ButtonWrapperCenter>
-          <ButtonWrapperCenter onClick={() => saveColour(randomColour ? randomColour : '')}>
+          <ButtonWrapperCenter whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => saveColour(randomColour ? randomColour : '')}>
             <StyledSaveIcon />
           </ButtonWrapperCenter>
           {isEmpty &&
@@ -166,17 +166,17 @@ const App = () => {
             <ErrorText>You already have that set saved</ErrorText>
           }
         </ContentContainer>
-        <ButtonWrapperRight playAnimation={playAnimation} onClick={toggleDrawer}>
+        <ButtonWrapperRight whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} playAnimation={playAnimation} onClick={toggleDrawer}>
           {!isDrawerOpen ?
             <StyledLeftIcon /> : <StyledRightIcon />
           }
         </ButtonWrapperRight>
         <SideBarContainer>
-          <Drawer 
-            showFavorite={showFavorite} 
+          <Drawer
+            showFavorite={showFavorite}
             clearFavorites={clearFavorites}
-            deleteFavorite={deleteFavorite} 
-            contents={savedColours} 
+            deleteFavorite={deleteFavorite}
+            contents={savedColours}
             isDrawerOpen={isDrawerOpen} />
         </SideBarContainer>
       </AppContainer>

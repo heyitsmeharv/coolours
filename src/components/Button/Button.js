@@ -1,12 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-const StyledButton = styled.button`
+import { motion } from 'framer-motion';
+
+const StyledButton = styled(motion.button)`
   font-size: 2em;
   padding: 5px;
   color: white;
   background: none;
-  outline: none;
+  outline: none!important;
   border: none;
   ${props => props.small && css`
     font-size: 1em;
@@ -19,13 +21,13 @@ const StyledButton = styled.button`
   }
 `;
 
-export const ButtonWrapperCenter = styled.div`
+export const ButtonWrapperCenter = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
-export const ButtonWrapperRight = styled.div`
+export const ButtonWrapperRight = styled(motion.div)`
   display: flex;
 
   @keyframes blinker {  
@@ -39,5 +41,5 @@ export const ButtonWrapperRight = styled.div`
 `
 
 export const Button = props => {
-  return <StyledButton small={props.small} border={props.border}>{props.text}</StyledButton>
+  return <StyledButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} small={props.small} border={props.border}>{props.text}</StyledButton>
 }
