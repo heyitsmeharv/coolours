@@ -70,7 +70,7 @@ const ErrorText = styled.p`
   justify-content: center;
 `;
 
-const CopyText =  styled(motion.p)`
+const CopyText = styled(motion.p)`
   color: white;
   font-size: 50px;
   font-weight: bold;
@@ -188,14 +188,14 @@ const App = () => {
               <ButtonWrapperCenter whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => saveColour(randomColour ? randomColour : '')}>
                 <StyledSaveIcon />
               </ButtonWrapperCenter>
+              {isEmpty &&
+                <ErrorText>You can't save an empty set</ErrorText>
+              }
+              {isDuplicate &&
+                <ErrorText>You already have that set saved</ErrorText>
+              }
             </>
             : <CopyText animate={{ scale: 2 }} transition={{ duration: 0.2 }}>Copied!</CopyText>}
-          {isEmpty &&
-            <ErrorText>You can't save an empty set</ErrorText>
-          }
-          {isDuplicate &&
-            <ErrorText>You already have that set saved</ErrorText>
-          }
         </ContentContainer>
         <ButtonWrapperRight whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} playAnimation={playAnimation} onClick={toggleDrawer}>
           {!isDrawerOpen ?
