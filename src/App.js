@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 // components
 import { Button, ButtonWrapperCenter, ButtonWrapperRight } from './components/Button/Button';
@@ -58,6 +59,7 @@ const HeaderWrapper = styled.div`
   font-size: 25px;
   color: white;
   font-weight: bold;
+  height: fit-content;
 `;
 
 const ErrorText = styled.p`
@@ -68,6 +70,16 @@ const ErrorText = styled.p`
   justify-content: center;
 `;
 
+const CopyText =  styled(motion.p)`
+  color: white;
+  font-size: 50px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+`
+
+const ButtonWrapper = styled.div``;
+
 const App = () => {
   const [colours] = useState(colourList);
   const [randomColour, setRandomColour] = useState();
@@ -77,6 +89,7 @@ const App = () => {
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = () => setDrawerOpen(!isDrawerOpen);
+  const [copySuccess, setCopySuccess] = useState(false);
 
   // random property from object
   const randomProperty = obj => {
@@ -140,6 +153,16 @@ const App = () => {
     setSavedColours(newColours);
   };
 
+  const copyToClipboard = colour => {
+    if (colour !== null) {
+      navigator.clipboard.writeText(colour);
+      setCopySuccess(true);
+      setTimeout(() => {
+        setCopySuccess(false);
+      }, 1000);
+    }
+  };
+
   return (
     <Background
       colourOne={randomColour ? randomColour[0].hex : '#ee7752, #e73c7e'}
@@ -149,16 +172,24 @@ const App = () => {
           <h2>Colour Generator</h2>
         </HeaderWrapper>
         <ContentContainer>
-          <TileWrapper>
-            <Tile colour={randomColour ? randomColour[0].hex : ''} />
-            <Tile colour={randomColour ? randomColour[1].hex : ''} />
-          </TileWrapper>
-          <ButtonWrapperCenter onClick={() => generateColours()}>
-            <Button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} text="Generate Colours" />
-          </ButtonWrapperCenter>
-          <ButtonWrapperCenter whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => saveColour(randomColour ? randomColour : '')}>
-            <StyledSaveIcon />
-          </ButtonWrapperCenter>
+          {copySuccess === false ?
+            <>
+              <TileWrapper>
+                <ButtonWrapper onClick={() => copyToClipboard(randomColour ? randomColour[0].hex : null)}>
+                  <Tile colour={randomColour ? randomColour[0].hex : ''} />
+                </ButtonWrapper>
+                <ButtonWrapper onClick={() => copyToClipboard(randomColour ? randomColour[1].hex : null)}>
+                  <Tile colour={randomColour ? randomColour[1].hex : ''} />
+                </ButtonWrapper>
+              </TileWrapper>
+              <ButtonWrapperCenter onClick={() => generateColours()}>
+                <Button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} text="Generate Colours" />
+              </ButtonWrapperCenter>
+              <ButtonWrapperCenter whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => saveColour(randomColour ? randomColour : '')}>
+                <StyledSaveIcon />
+              </ButtonWrapperCenter>
+            </>
+            : <CopyText animate={{ scale: 2 }} transition={{ duration: 0.2 }}>Copied!</CopyText>}
           {isEmpty &&
             <ErrorText>You can't save an empty set</ErrorText>
           }

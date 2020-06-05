@@ -60,14 +60,12 @@ const Drawer = ({ showFavorite, clearFavorites, deleteFavorite, contents, isDraw
         </ButtonWrapperCenter>
         <SavedList>
           {contents.map((tile, index) => (
-            <ListItem onClick={() => showFavorite(tile)}>
+            <ListItem key={index} onClick={() => showFavorite(tile)}>
               <SavedTile
-                key={index}
                 index={index}
                 colour={tile[0].hex}
               />
               <SavedTile
-                key={index}
                 index={index}
                 colour={tile[1].hex}
               />
