@@ -154,7 +154,7 @@ const App = () => {
   };
 
   const copyToClipboard = colour => {
-    if (colour !== null) {
+    if (!!colour) {
       navigator.clipboard.writeText(colour);
       setCopySuccess(true);
       setTimeout(() => {
