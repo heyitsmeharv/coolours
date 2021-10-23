@@ -10,11 +10,11 @@ import { DeleteBack } from '@styled-icons/remix-fill/DeleteBack';
 const DrawContainer = styled.div`
   ${props => props.shouldStyle && css`
     height: 100%;
-    width: 200px;
+    width: 300px;
     overflow-y: auto;
     background-color: transparent;
     transition: all 0.3s ease-in-out;
-    transform: translate(200px);
+    transform: translate(300px);
     box-shadow: 5px 0px 18px rgb(0, 0, 0, 0);
   
     ${props => props.isOpen && css`

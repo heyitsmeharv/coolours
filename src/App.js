@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
@@ -44,7 +44,6 @@ const ContentContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   flex: 1;
-  margin-right: 22vh;
 `;
 
 const SideBarContainer = styled.div`
@@ -90,6 +89,10 @@ const App = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const toggleDrawer = () => setDrawerOpen(!isDrawerOpen);
   const [copySuccess, setCopySuccess] = useState(false);
+
+  useEffect(() => {
+    generateColours();
+  }, []);
 
   // random property from object
   const randomProperty = obj => {
@@ -168,9 +171,6 @@ const App = () => {
       colourOne={randomColour ? randomColour[0].hex : '#ee7752, #e73c7e'}
       colourTwo={randomColour ? randomColour[1].hex : '#23a6d5, #23d5ab'}>
       <AppContainer>
-        <HeaderWrapper>
-          <h2>Colour Generator</h2>
-        </HeaderWrapper>
         <ContentContainer>
           {copySuccess === false ?
             <>

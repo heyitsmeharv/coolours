@@ -6,7 +6,8 @@ const StyledTile = styled(motion.button)`
   width: 50vh;
   height: 50vh;
   margin: 25px;
-  border: white dashed 5px;
+  border: none;
+  border-radius: 50%;
   outline: none!important;
   background: transparent;
   background: ${props => props.colour};
@@ -30,10 +31,10 @@ export const Value = styled.span`
 `;
 
 const SavedItem = styled.div`
-  width: 5vh;
-  height: 5vh;
+  width: 50px;
+  height: 50px;
   margin: 10px;
-  border: white dashed 2px;
+  border-radius: 50%;
   background: ${props => props.colour};
   :hover {
     cursor: pointer;
