@@ -1,45 +1,40 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
 import styled, { css } from 'styled-components';
 
 import { motion } from 'framer-motion';
 
-const StyledButton = styled(motion.button)`
-  font-size: 2em;
-  padding: 5px;
-  color: white;
+export const StyledButton = styled(motion.button)`
+  font-family: 'Gotham SSm A', sas-serinf;
+  font-size: 1.5rem;
+  color: #222;
   background: none;
-  outline: none!important;
+  outline: none !important;
   border: none;
-  ${props => props.small && css`
-    font-size: 1em;
-  `}
-  ${props => props.border && css`
-    border: 2px solid white;
-  `}
+  margin: 0 2rem;
   :hover {
     cursor: pointer;
   }
 `;
 
-export const ButtonWrapperCenter = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-
-export const ButtonWrapperRight = styled(motion.div)`
-  display: flex;
-
-  @keyframes blinker {  
-    50% { opacity: 0; }
+export const StyledNavButton = styled(motion.button)`
+  font-family: 'Gotham SSm A', sans-serif;
+  font-size: 1.5rem;
+  color: #222;
+  background: none;
+  outline: none !important;
+  border: none;
+  margin: 0 2rem;
+  :hover {
+    cursor: pointer;
   }
+`;
 
-  ${props => props.playAnimation && css`
-    animation: blinker 1s linear;
-  `}
-
-`
-
-export const Button = props => {
-  return <StyledButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} small={props.small} border={props.border}>{props.text}</StyledButton>
-}
+export const StyledNavLink = styled(NavLink)`
+  color: #222;
+  text-decoration: none;
+  :hover {
+    color: #222;
+    text-decoration: none;
+  }
+`;
