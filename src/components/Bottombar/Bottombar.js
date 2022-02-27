@@ -11,33 +11,35 @@ const Container = styled.section`
   transform: translate(-50%, -50%);
 `;
 
-const Bottombar = () => {
+const Bottombar = ({ textColour }) => {
   const isConverter = (/convert/.test(window.location.href))
   return (
     <Container>
       {!isConverter ?
-        <StyledNavButton>
+        <StyledNavButton textColour={textColour}>
           <StyledNavLink
+            textColour={textColour}
             exact to='/convert'
           >
             HEX / RGB Converter
-        </StyledNavLink>
+          </StyledNavLink>
         </StyledNavButton>
         :
-        <StyledNavButton>
+        <StyledNavButton textColour={textColour}>
           <StyledNavLink
+            textColour={textColour}
             exact to='/random'
           >
             Random Colour
-      </StyledNavLink>
+          </StyledNavLink>
         </StyledNavButton>
       }
       |
-      <StyledNavButton onClick={() => window.open('https://www.heyitsmeharv.com', '_blank')}>
+      <StyledNavButton textColour={textColour} onClick={() => window.open('https://www.heyitsmeharv.com', '_blank')}>
         HeyItsMeHarv
       </StyledNavButton>
       |
-      <StyledNavButton onClick={() => window.open('https://colour-generator.netlify.app', '_blank')}>
+      <StyledNavButton textColour={textColour} onClick={() => window.open('https://colour-generator.netlify.app', '_blank')}>
         v1
       </StyledNavButton>
     </Container >

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 // pages
 import Random from './pages/Random';
@@ -13,6 +13,7 @@ const App = () => {
           return (
             <>
               <Switch location={location}>
+                <Redirect exact from='/' to="/convert" />
                 <Route exact path='/random' component={Random} />
                 <Route exact path='/convert' component={Converter} />
               </Switch>

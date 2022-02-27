@@ -5,22 +5,21 @@ import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const StyledButton = styled(motion.button)`
-  font-family: 'Gotham SSm A', sas-serinf;
-  font-size: 1.5rem;
-  color: #222;
+  font-size: 42px;
+  font-weight: 200;
+  line-height: 60px;
+  color: ${props => props.textColour};
   background: none;
   outline: none !important;
   border: none;
-  margin: 0 2rem;
   :hover {
     cursor: pointer;
   }
 `;
 
 export const StyledNavButton = styled(motion.button)`
-  font-family: 'Gotham SSm A', sans-serif;
   font-size: 1.5rem;
-  color: #222;
+  color: ${props => props.textColour};
   background: none;
   outline: none !important;
   border: none;
@@ -31,10 +30,11 @@ export const StyledNavButton = styled(motion.button)`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  color: #222;
+  color: ${props => props.textColour};
   text-decoration: none;
   :hover {
-    color: #222;
+    cursor: pointer;
+    color: ${props => props.textColour};
     text-decoration: none;
   }
 `;
