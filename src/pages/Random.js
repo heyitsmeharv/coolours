@@ -80,11 +80,14 @@ const Random = () => {
           {randomColour === null ? (
             <StyledButton
               textColour={textColour}
-              autoFocus onKeyDown={() => getRandomColor()}>
+              onClick={() => getRandomColor()}
+              autoFocus onKeyDown={() => getRandomColor()}
+            >
               Press Spacebar
             </StyledButton>
           ) : (
-            <StyledButton textColour={textColour}
+            <StyledButton
+              textColour={textColour}
               autoFocus onKeyDown={(e) => handleSpace(e)}
               onClick={() => copyToClipboard(randomColour ? randomColour : null)}>
               {randomColour}
