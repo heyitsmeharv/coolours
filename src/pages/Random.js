@@ -17,16 +17,8 @@ const FlexBox = styled.div`
   height: 100%;
 `;
 
-const CopyText = styled(motion.p)`
-  color: ${props => props.textColour};
-  font-size: 42px;
-  font-weight: 200;
-  line-height: 60px;
-`;
-
 const Random = () => {
   const [randomColour, setRandomColour] = useState(null);
-  const [copySuccess, setCopySuccess] = useState(false);
   const [textColour, setTextColour] = useState('#000');
 
   useEffect(() => {
@@ -43,16 +35,13 @@ const Random = () => {
     for (let i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
+    copyToClipboard(color);
     setRandomColour(color);
   }
 
   const copyToClipboard = colour => {
     if (!!colour) {
       navigator.clipboard.writeText(colour);
-      setCopySuccess(true);
-      setTimeout(() => {
-        setCopySuccess(false);
-      }, 1000);
     }
   };
 
@@ -75,31 +64,25 @@ const Random = () => {
     <Background
       colour={randomColour ? randomColour : '#ee7752'}
     >
-      {!copySuccess ? (
-        <FlexBox>
-          {randomColour === null ? (
-            <StyledButton
-              textColour={textColour}
-              onClick={() => getRandomColor()}
-              autoFocus onKeyDown={() => getRandomColor()}
-            >
-              Press Spacebar
-            </StyledButton>
-          ) : (
-            <StyledButton
-              textColour={textColour}
-              autoFocus onKeyDown={(e) => handleSpace(e)}
-              onClick={() => copyToClipboard(randomColour ? randomColour : null)}>
-              {randomColour}
-            </StyledButton>
-          )}
-        </FlexBox>
-      ) : (
-        <FlexBox>
-          <CopyText textColour={textColour}
-            animate={{ scale: 2 }} transition={{ duration: 0.2 }}>Copied!</CopyText>
-        </FlexBox>
-      )}
+      <FlexBox>
+        {randomColour === null ? (
+          <StyledButton
+            textColour={textColour}
+            onClick={() => getRandomColor()}
+            onKeyDown={(e) => handleSpace(e)}
+            autoFocus
+          >
+            Press Spacebar
+          </StyledButton>
+        ) : (
+          <StyledButton
+            textColour={textColour}
+            autoFocus onKeyDown={(e) => handleSpace(e)}
+            onClick={() => getRandomColor()}>
+            {randomColour}
+          </StyledButton>
+        )}
+      </FlexBox>
       <Bottombar textColour={textColour} />
     </Background>
   );
