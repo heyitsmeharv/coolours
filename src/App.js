@@ -13,7 +13,7 @@ const App = () => {
           return (
             <>
               <Switch location={location}>
-                <Redirect exact from='/' to="/convert" />
+                <Redirect exact from='/' to="/random" />
                 <Route exact path='/random' component={Random} />
                 <Route exact path='/convert' component={Converter} />
               </Switch>
