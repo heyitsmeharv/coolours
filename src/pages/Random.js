@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
+import chroma from 'chroma-js';
+
 import { StyledButton } from '../components/Button/Button';
 import Bottombar from '../components/Bottombar/Bottombar';
 
@@ -62,7 +64,7 @@ const Random = () => {
 
   return (
     <Background
-      colour={randomColour ? randomColour : '#ee7752'}
+      colour={randomColour ? randomColour : chroma.random()}
     >
       <FlexBox>
         {randomColour === null ? (
