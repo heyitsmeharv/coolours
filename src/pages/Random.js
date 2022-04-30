@@ -59,6 +59,7 @@ const Random = () => {
   const handleSpace = e => {
     if (e.keyCode === 32) {
       getRandomColor();
+      e.preventDefault();
     }
   };
 
