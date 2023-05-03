@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { css } from 'styled-components';
 
 import chroma from 'chroma-js';
 
-import Bottombar from '../components/Bottombar/Bottombar';
+import Bar from '../components/Bar/Bar';
 
 const Background = styled.div`
   height: 100vh;
-  background: ${props => props.colour}
+  background: ${props => props.color}
 `;
 
 const FlexBox = styled.div`
@@ -19,7 +19,7 @@ const FlexBox = styled.div`
 `;
 
 const StyledInput = styled.input`
-  color: ${props => props.textColour};
+  color: ${props => props.textColor};
   outline: none;
   border: none;
   display: block;
@@ -33,7 +33,7 @@ const StyledInput = styled.input`
   border-radius: 0;
 
   ::placeholder {
-    color: ${props => props.textColour};
+    color: ${props => props.textColor};
   }
 
   ${props => props.hex && css`
@@ -42,47 +42,57 @@ const StyledInput = styled.input`
 `;
 
 const Converter = () => {
-  const [rgb, setRGB] = useState({
-    r: '',
-    g: '',
-    b: '',
-  });
-  const [hexString, setHexString] = useState(chroma.random());
-  const [rgbString, setRGBString] = useState(hexString._rgb?._unclipped.join(',') + ')');
-  const [textColour, setTextColour] = useState('#000');
+  const [hexValue, setHexValue] = useState('#3291f2');
+  const [rgbaValue, setRgbaValue] = useState('');
+  const [textColor, setTextColor] = useState('#000');
 
-  useEffect(() => {
-    if (hexString._rgb) {
-      setRGB({
-        r: hexString?._rgb[0],
-        g: hexString?._rgb[1],
-        b: hexString?._rgb[2],
-      });
-      setRGBString('rgb(' + hexString?._rgb?._unclipped.slice(0, -1).join(',') + ')');
-      setHexString("#" + ((1 << 24) + (rgb?.r << 16) + (rgb?.g << 8) + rgb?.b).toString(16).slice(1));
-      const brightness = Math.round(((parseInt(rgb?.r) * 299) +
-        (parseInt(rgb?.g) * 587) +
-        (parseInt(rgb?.b) * 114)) / 1000);
-      setTextColour((brightness > 125) ? '#000' : '#FFF');
-    }
-  }, [hexString, rgbString]);
+  const hexToRgba = hex => {
+    setRgbaValue(
+      `rgba(${parseInt(hex.slice(1, 3), 16)}, ${parseInt(hex.slice(3, 5), 16)}, ${parseInt(hex.slice(5, 7), 16)}, 1)`
+    );
+    const brightness = Math.round(((parseInt(hex.slice(1, 3), 16) * 299) +
+      (parseInt(hex.slice(3, 5), 16) * 587) +
+      (parseInt(hex.slice(5, 7), 16) * 114)) / 1000);
+    setTextColor((brightness > 125) ? '#000' : '#FFF');
+  };
 
-  const handleSpace = e => {
-    if (e.keyCode === 32) {
-      setHexString(chroma.random());
+  const rgbToHex = rgba => {
+    setHexValue(
+      rgba.replace(/rgba?\(|\)/g, '')
+        .split(',')
+        .map(value => parseInt(value).toString(16).padStart(2, '0'))
+        .join('')
+    );
+
+    if (hexValue.slice) {
+      const brightness = Math.round(((parseInt(hexValue.slice(1, 3), 16) * 299) +
+        (parseInt(hexValue.slice(3, 5), 16) * 587) +
+        (parseInt(hexValue.slice(5, 7), 16) * 114)) / 1000);
+      setTextColor((brightness > 125) ? '#000' : '#FFF');
     }
   };
 
+  const handleSpace = e => {
+    if (e.keyCode === 32) {
+      setHexValue(chroma.random());
+    }
+  };
+
+  const handleOnChange = (value, target) => {
+    target === 'hex' ? setHexValue(value) : setRgbaValue(value);
+    target === 'hex' ? hexToRgba(value) : rgbToHex(value);
+  }
+
   return (
     <Background
-      colour={hexString}
+      color={hexValue}
       onKeyDown={(e) => handleSpace(e)}
     >
       <FlexBox>
-        <StyledInput hex type="text" placeholder="hex" value={hexString} onChange={(e => setHexString(e.target.value))} />
-        <StyledInput type="text" placeholder="rgb" value={rgbString} onChange={(e => setRGBString(e.target.value))} />
+        <StyledInput hex type="text" placeholder="hex" value={hexValue} onChange={e => handleOnChange(e.target.value, 'hex')} />
+        <StyledInput type="text" placeholder="rgba" value={rgbaValue} onChange={e => handleOnChange(e.target.value, 'rgba')} />
       </FlexBox>
-      <Bottombar textColour={textColour} />
+      <Bar textColor={textColor} />
     </Background>
   );
 }

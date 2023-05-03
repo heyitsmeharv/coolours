@@ -11,23 +11,23 @@ const Container = styled.section`
   transform: translate(-50%, -50%);
 `;
 
-const Bottombar = ({ textColour }) => {
+const Bar = ({ textColor }) => {
   const isConverter = (/convert/.test(window.location.href))
   return (
     <Container>
       {!isConverter ?
-        <StyledNavButton textColour={textColour}>
+        <StyledNavButton textColor={textColor}>
           <StyledNavLink
-            textColour={textColour}
+            textColor={textColor}
             exact to='/convert'
           >
             HEX / RGB Converter
           </StyledNavLink>
         </StyledNavButton>
         :
-        <StyledNavButton textColour={textColour}>
+        <StyledNavButton textColor={textColor}>
           <StyledNavLink
-            textColour={textColour}
+            textColor={textColor}
             exact to='/random'
           >
             Random Colour
@@ -35,15 +35,15 @@ const Bottombar = ({ textColour }) => {
         </StyledNavButton>
       }
       |
-      <StyledNavButton textColour={textColour} onClick={() => window.open('https://www.heyitsmeharv.com', '_blank')}>
+      <StyledNavButton textColor={textColor} onClick={() => window.open('https://www.heyitsmeharv.com', '_blank')}>
         HeyItsMeHarv
       </StyledNavButton>
       |
-      <StyledNavButton textColour={textColour} onClick={() => window.open('https://colour-generator.netlify.app', '_blank')}>
+      <StyledNavButton textColor={textColor} onClick={() => window.open('https://colour-generator.netlify.app', '_blank')}>
         v1
       </StyledNavButton>
     </Container >
   )
 }
 
-export default Bottombar;
+export default Bar;
