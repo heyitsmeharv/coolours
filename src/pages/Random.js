@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 import chroma from 'chroma-js';
 
 import { StyledButton } from '../components/Button/Button';
-import Bottombar from '../components/Bottombar/Bottombar';
+import Bar from '../components/Bar/Bar';
 
 const Background = styled.div`
   height: 100vh;
-  background: ${props => props.colour}
+  background: ${props => props.color}
 `;
 
 const FlexBox = styled.div`
@@ -20,16 +19,16 @@ const FlexBox = styled.div`
 `;
 
 const Random = () => {
-  const [randomColour, setRandomColour] = useState(null);
-  const [textColour, setTextColour] = useState('#000');
+  const [randomColor, setRandomColor] = useState(null);
+  const [textColor, setTextColor] = useState('#000');
 
   useEffect(() => {
-    const rgb = hexToRgb(randomColour);
+    const rgb = hexToRgb(randomColor);
     const brightness = Math.round(((parseInt(rgb?.r) * 299) +
       (parseInt(rgb?.g) * 587) +
       (parseInt(rgb?.b) * 114)) / 1000);
-    setTextColour((brightness > 125) ? '#000' : '#FFF');
-  }, [randomColour])
+    setTextColor((brightness > 125) ? '#000' : '#FFF');
+  }, [randomColor])
 
   const getRandomColor = () => {
     let letters = '0123456789ABCDEF';
@@ -38,12 +37,12 @@ const Random = () => {
       color += letters[Math.floor(Math.random() * 16)];
     }
     copyToClipboard(color);
-    setRandomColour(color);
+    setRandomColor(color);
   }
 
-  const copyToClipboard = colour => {
-    if (!!colour) {
-      navigator.clipboard.writeText(colour);
+  const copyToClipboard = color => {
+    if (!!color) {
+      navigator.clipboard.writeText(color);
     }
   };
 
@@ -65,12 +64,12 @@ const Random = () => {
 
   return (
     <Background
-      colour={randomColour ? randomColour : chroma.random()}
+      color={randomColor ? randomColor : chroma.random()}
     >
       <FlexBox>
-        {randomColour === null ? (
+        {randomColor === null ? (
           <StyledButton
-            textColour={textColour}
+            textColor={textColor}
             onClick={() => getRandomColor()}
             onKeyDown={(e) => handleSpace(e)}
             autoFocus
@@ -79,14 +78,14 @@ const Random = () => {
           </StyledButton>
         ) : (
           <StyledButton
-            textColour={textColour}
+            textColor={textColor}
             autoFocus onKeyDown={(e) => handleSpace(e)}
             onClick={() => getRandomColor()}>
-            {randomColour}
+            {randomColor}
           </StyledButton>
         )}
       </FlexBox>
-      <Bottombar textColour={textColour} />
+      <Bar textColor={textColor} />
     </Background>
   );
 }
