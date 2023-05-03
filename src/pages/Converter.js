@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from 'styled-components';
 
 import chroma from 'chroma-js';
@@ -46,10 +46,15 @@ const Converter = () => {
   const [rgbaValue, setRgbaValue] = useState('');
   const [textColor, setTextColor] = useState('#000');
 
+  useEffect(() => {
+    hexToRgba(hexValue);
+  }, [])
+
   const hexToRgba = hex => {
     setRgbaValue(
       `rgba(${parseInt(hex.slice(1, 3), 16)}, ${parseInt(hex.slice(3, 5), 16)}, ${parseInt(hex.slice(5, 7), 16)}, 1)`
     );
+
     const brightness = Math.round(((parseInt(hex.slice(1, 3), 16) * 299) +
       (parseInt(hex.slice(3, 5), 16) * 587) +
       (parseInt(hex.slice(5, 7), 16) * 114)) / 1000);

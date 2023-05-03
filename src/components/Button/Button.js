@@ -1,6 +1,5 @@
-import React from 'react';
 import { NavLink } from "react-router-dom";
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { motion } from 'framer-motion';
 
@@ -8,7 +7,7 @@ export const StyledButton = styled(motion.button)`
   font-size: 42px;
   font-weight: 200;
   line-height: 60px;
-  color: ${props => props.textColour};
+  color: ${props => props.textColor};
   background: none;
   outline: none !important;
   border: none;
@@ -19,7 +18,7 @@ export const StyledButton = styled(motion.button)`
 
 export const StyledNavButton = styled(motion.button)`
   font-size: 1.5rem;
-  color: ${props => props.textColour};
+  color: ${props => props.textColor};
   background: none;
   outline: none !important;
   border: none;
@@ -30,11 +29,11 @@ export const StyledNavButton = styled(motion.button)`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  color: ${props => props.textColour};
+  color: ${props => props.textColor};
   text-decoration: none;
   :hover {
     cursor: pointer;
-    color: ${props => props.textColour};
+    color: ${props => props.textColor};
     text-decoration: none;
   }
 `;
